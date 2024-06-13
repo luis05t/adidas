@@ -8,7 +8,13 @@ export class ShoesService {
   constructor(private prisma: PrismaService){}
 
   create(createShoeDto: CreateShoeDto) {
-    return this.prisma.adidas.create({ data: createShoeDto});
+    return this.prisma.adidas.create({
+      data: {
+        model: createShoeDto.model,
+        color: createShoeDto.color,
+        price: Number(createShoeDto.price),
+      },
+    });
   }
 
   findAll() {
